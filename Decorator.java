@@ -4,7 +4,7 @@ class Decorator {
         void print(String value);
     }
     
-    public class PrinterImpl implements Printer {
+    public static class PrinterImpl implements Printer {
     
         @Override
         public void print(String value) {
@@ -13,7 +13,7 @@ class Decorator {
         
     }
     
-    public class PrinterDecorator implements Printer {
+    public static class PrinterDecorator implements Printer {
     
         private Printer wrappee;
     
@@ -27,7 +27,7 @@ class Decorator {
         }
     }
     
-    public class UppercaseDecorator extends PrinterDecorator {
+    public static class UppercaseDecorator extends PrinterDecorator {
     
         public UppercaseDecorator(Printer executor) {
             super(executor);
@@ -43,9 +43,11 @@ class Decorator {
         }
     }
 
+    public static void main(String[] args) {
+        Printer uppercase = new UppercaseDecorator(new PrinterImpl());
+
+        uppercase.print("uppercase");
+    }
 
 }
-
-
-
 

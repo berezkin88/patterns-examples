@@ -1,5 +1,3 @@
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -17,10 +15,10 @@ public class Template {
                 edit(file);
                 write(filePath, file);
             } catch (Exception ex) {
-                System.out.println("Failed to edit file. " + ex);
+                // handle exception
             }
 
-            System.out.println("Edition completed successfully");
+           // some other stuff
         }
 
         byte[] read(String filePath) throws IOException {
@@ -40,7 +38,6 @@ public class Template {
         void edit(byte[] file) {
             // Do some stuff with CSV
         }
-        
     }
 
     public class ExcelFileEditor extends FileEditor {
@@ -49,6 +46,6 @@ public class Template {
         void edit(byte[] file) {
             // Do some stuff with Excel
         }
-        
     }
+
 }

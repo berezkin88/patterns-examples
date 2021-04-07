@@ -27,7 +27,7 @@ public class CommandExmpl {
         Command startAuth = new StartAuthorizationCommand();
         // other commands
 
-        public void performFlow() {
+        public void executeCommand() {
             createConsent.execute();
             startAuth.execute();
             // etc.

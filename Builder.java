@@ -1,6 +1,6 @@
 public class Builder {
 
-    class Pizza {
+    static class Pizza {
         private String dough = "";
         private String sauce = "";
         private String topping = "";
@@ -16,9 +16,18 @@ public class Builder {
         public void setTopping(String topping) {
             this.topping = topping;
         }
+
+        @Override
+        public String toString() {
+            return "Pizza{" +
+                "dough='" + dough + '\'' +
+                ", sauce='" + sauce + '\'' +
+                ", topping='" + topping + '\'' +
+                '}';
+        }
     }
     
-    abstract class PizzaBuilder {
+    abstract static class PizzaBuilder {
         protected Pizza pizza;
     
         public Pizza getPizza() {
@@ -34,7 +43,7 @@ public class Builder {
         public abstract void buildTopping();
     }
     
-    class SpicyPizzaBuilder extends PizzaBuilder {
+    static class SpicyPizzaBuilder extends PizzaBuilder {
         public void buildDough() {
             pizza.setDough("pan baked");
         }
@@ -48,18 +57,19 @@ public class Builder {
         }
     }
     
-    class Waiter {
-        private PizzaBuilder pizzaBuilder;
+    static class Waiter {
+        private static PizzaBuilder pizzaBuilder;
     
         public void setPizzaBuilder(PizzaBuilder pb) {
             pizzaBuilder = pb;
         }
     
         public Pizza getPizza() {
+            constructPizza();
             return pizzaBuilder.getPizza();
         }
     
-        public void constructPizza() {
+        private static void constructPizza() {
             pizzaBuilder.createNewPizzaProduct();
             pizzaBuilder.buildDough();
             pizzaBuilder.buildSauce();
@@ -67,4 +77,14 @@ public class Builder {
         }
     }
 
+    public static class Demo {
+
+        public static void main(String[] args) {
+            Waiter waiter = new Waiter();
+            waiter.setPizzaBuilder(new SpicyPizzaBuilder());
+
+            System.out.println(waiter.getPizza());
+        }
+    }
 }
+

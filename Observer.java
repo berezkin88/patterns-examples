@@ -31,7 +31,6 @@ public class Observer {
         public void notify(String value) {
             subscribers.forEach(sub -> sub.update(value));
         }
-        
     }
 
     public static class SilentSubscriber implements Subscriber {
@@ -40,7 +39,6 @@ public class Observer {
         public void update(String value) {
             System.out.println("Shh!!! I've been notified with " + value);
         }
-        
     }
 
     public static class LoudSubscriber implements Subscriber {
@@ -49,7 +47,6 @@ public class Observer {
         public void update(String value) {
             System.out.println("HEY!!! I'VE GOT A NOTIFICATION: " + value);
         }
-        
     }
 
     public static void main(String[] args) {
@@ -63,4 +60,5 @@ public class Observer {
 
         publisher.notify("Message");
     }
+
 }

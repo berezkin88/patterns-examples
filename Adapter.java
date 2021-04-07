@@ -1,10 +1,12 @@
+import java.util.List;
+
 public class Adapter {
 
     interface Cat {
         void meow();
     }
 
-    class Kitty implements Cat {
+    static class Kitty implements Cat {
         public void meow() {
             System.out.println("Meow!");
         }
@@ -14,17 +16,17 @@ public class Adapter {
         void bark();
     }
 
-    class Hound implements Dog {
+    static class Hound implements Dog {
         public void bark() {
             System.out.println("Waf-waf!");
         }
     }
 
-    class CatAdapter implements Dog {
+    static class CatAdapter implements Dog {
 
         private Cat cat;
 
-        public void setCat(Cat cat) {
+        public CatAdapter(Cat cat) {
             this.cat = cat;
         }
 
@@ -33,6 +35,15 @@ public class Adapter {
             cat.meow();
         }
         
+    }
+
+    static class Demo {
+
+        public static void main(String[] args) {
+            List<Dog> flock = List.of(new Hound(), new CatAdapter(new Kitty()));
+
+            flock.forEach(Dog::bark);
+        }
     }
     
 }
